@@ -95,23 +95,23 @@ roku += "]}"
 
 #update Roku on Github
 
-#Roku
+
 #Connect to Github Expires 11/4/2023
-g = Github("mlassoff", "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")
+authtoken = "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"
+updateMessage = "Feed update: " + iso_date
+
+#Roku
+g = Github("mlassoff", authtoken)
 repo = g.get_user().get_repo("rokuvideos")
 contents = repo.get_contents("index.json")
-updateMessage = "Feed update: " + iso_date
-#repo.update_file(contents.path, updateMessage, roku, contents.sha, branch="main")
 repo.update_file("index.json", updateMessage, roku, contents.sha)
 print("Roku Github Repository Updated at https://github.com/mlassoff/rokuvideos")
 
 #Syndicated Feed
-g = Github("mlassoff", "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")
+g = Github("mlassoff", authtoken)
 repo = g.get_user().get_repo("syndicatedvideos")
 contents = repo.get_contents("index.xml")
-updateMessage = "Added " + title
-#repo.update_file(contents.path, updateMessage, roku, contents.sha, branch="main")
-repo.update_file("index.json", updateMessage, output, contents.sha)
+repo.update_file("index.xml", updateMessage, output, contents.sha)
 print("Roku Github Repository Updated at https://github.com/mlassoff/syndicatedvideos")
 
 
